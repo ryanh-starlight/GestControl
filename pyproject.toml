@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gestcontrol"
+version = "0.1.0"
+description = "Real-time hand gesture OS control via MediaPipe, TouchDesigner, and OSC"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "mediapipe>=0.10",
+    "opencv-contrib-python>=4.8",
+    "python-osc>=1.8",
+    "pynput>=1.7",
+    "pyautogui>=0.9",
+    "pyyaml>=6.0",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+ml  = ["scikit-learn>=1.3", "pandas>=2.0"]
+
+[project.scripts]
+gestcontrol = "gestcontrol.run_all:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gestcontrol"]
+
+[tool.hatch.build]
+sources = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

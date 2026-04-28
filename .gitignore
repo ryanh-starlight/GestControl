@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Data
+data/*.csv
+data/*.pkl
+
+# IDE / OS
+.idea/
+.vscode/
+*.toe.bak
+Thumbs.db
+.DS_Store
+
+# Secrets / local overrides
+*.env
+config/local_*.yaml

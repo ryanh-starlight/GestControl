@@ -1,0 +1,40 @@
+# Gesture → OS action mapping
+#
+# action:       cursor_move | mouse_drag | mouse_click | key_shortcut | media_key
+# trigger:      enter (default) | hold | exit  — when to fire (not used by mouse_drag)
+# repeat_ms:    (hold actions only) how often to repeat in milliseconds
+#
+# Add a new gesture by appending a block; no Python edits required.
+
+gestures:
+
+  index_point:
+    action: cursor_move             # Maps hand X/Y to mouse position every frame.
+
+  curl_click:
+    action: mouse_click
+    button: left                    # Index extended + middle curled: trigger-pull click from pointing mode.
+    trigger: enter
+
+  pinch:
+    action: mouse_drag
+    button: left                    # Press on enter, release on exit. Quick pinch = click; held = drag.
+
+  fist:
+    action: mouse_drag
+    button: middle
+
+  open_palm:
+    action: media_key
+    key: play_pause
+    trigger: enter
+
+  three_fingers:
+    action: key_shortcut
+    keys: [win, tab]               # Task View — show all open windows.
+    trigger: enter
+
+  four_fingers:
+    action: key_shortcut
+    keys: [win, d]                 # Show desktop — minimise everything.
+    trigger: enter

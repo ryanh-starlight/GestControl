@@ -1,0 +1,36 @@
+# GestControl runtime settings
+# Edit here to tune thresholds without touching Python code.
+
+mediapipe:
+  model_path: "models/hand_landmarker.task"   # download via: python -m gestcontrol.download_model
+  min_detection_confidence: 0.7
+  min_tracking_confidence: 0.5
+
+smoothing:
+  alpha: 0.35     # EMA weight for new cursor value. Higher = faster/jitterier.
+  flip_x: true    # Mirror X for front-facing webcam (keeps cursor intuitive).
+
+debounce:
+  hold_frames: 1      # Consecutive frames before gesture fires 'enter'. 1 = fires on first detected frame.
+  cooldown_ms: 400    # Min ms before same gesture can fire 'enter' again.
+
+osc:
+  action_host: "127.0.0.1"
+  action_port: 9000    # landmark_service → action_server
+
+pip:
+  enabled: true
+  width: 320
+  height: 240
+  corner: "top_right"    # top_right | top_left | bottom_right | bottom_left
+  margin: 16             # pixels from screen edge
+
+cursor:
+  active_region:
+    x_min: 0.05   # Left edge of hand zone in flip-corrected space (0=left-of-screen).
+    x_max: 0.95   # Right edge.
+    y_min: 0.25   # Top edge — shifted down so resting hand maps near screen centre.
+    y_max: 0.85   # Bottom edge.
+
+screen:
+  deadzone: 0.05    # Fraction of hand-range edges clipped (prevents edge sticking).
